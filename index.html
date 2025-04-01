@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My GitHub Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Background with Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url('bg_gradient_sm.png') no-repeat center center / cover;
+      color: #ccc;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .image-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 5rem;
+    }
+
+    .image-row figure {
+      width: 250px;
+      margin: 0;
+      text-align: center;
+    }
+
+    img {
+      max-width: 900px;
+      width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+
+    .text {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .para {
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.6;
+      
+      margin-top: 1rem;
+    }
+
+    .button {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Hello, world! Hello Dietmar!</h1>
-  <p>This is my GitHub Pages site.</p>
+  <p>
+    <img src="installation_blue.jpg" alt="Installation Image">
+  </p>
+  <div class="text">
+    Reservoirs of Venice
+  </div>
+  <p>Dietmar Offenhuber and Orkan Telhan</p>
+  <div class="para">
+    Reservoirs of Venice explores the city as a medium for information processing, using its physical systems to model and predict environmental changes. Inspired by the field of physical reservoir computing, which leverages dynamic physical processes for self-learning systems, the project envisions Venice as a data source and computational agent that predicts its future.
+  </div>
+  <div class="para">
+    We present a "water computer" that learns from human activity, gleaned from the spatio-temporal patterns of Venice's water surfaces. During the exhibition, the installation will learn to interpret its activity resulting from human movement and environmental conditions, and to predict the time of day. Unlike energy-intensive digital AI systems, this computer is composed of the very elements it computes with, and requires only a fraction of the energy to operate.
+  </div>
+  <div class="para">
+    The work critically engages with urban computing by moving beyond traditional data-centric paradigms. Historically, urban computing has focused either on digital systems - relying on sensors and control networks - or on models that use physical analogies to understand urban dynamics. Reservoirs of Venice proposes a third paradigm in which physical processes are used to transform information, rather than serve as analogies.
+  </div>
+  <div class="para">
+    <a href="presskit.zip" class="button" download>Download Presskit</a>
+  </div>
+
+  <div class="image-container">
+    <div class="image-row">
+      <figure>
+        <img src="map.png" alt="Image 1">
+        <figcaption>The waters of Venice are a canvas that records human activity and environmental conditions.</figcaption>
+      </figure>
+      <figure>
+        <img src="signals.png" alt="Image 2">
+        <figcaption>Physical reservoir computing uses such natural phenomena to predict future states.</figcaption>
+      </figure>
+      <figure>
+        <img src="circle.png" alt="Image 3">
+        <figcaption>The installation models a city-wide computer, using Venice as a data source and computational agent</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="para">
+    <p><strong>Design & Creative Team:</strong><br> 
+    Jesus Ocampo Aguilar, Paula Martin Rivero, Sebastian Gonzales Quintero</p>
+    <p><strong>Technical support:</strong><br> 
+    Joel Murphy</p>
+    <p><strong>Supported by:</strong><br> 
+    Österreichisches Bundesministerium für Kunst, Kultur, öffentlicher Dienst und Sport<br> 
+    College of Arts Media and Design, Northeastern University<br> 
+    MAI International GmbH<br> 
+    @iloveyouvenice youtube webcam channel</p>
+  </div>
 </body>
 </html>
