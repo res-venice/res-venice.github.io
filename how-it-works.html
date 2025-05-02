@@ -61,8 +61,8 @@
     }
 
     .button {
-      background-color: white;
-      color: black;
+      background-color: transparent;
+      color: white;
       padding: 10px 20px;
       text-align: center;
       text-decoration: none;
@@ -70,13 +70,14 @@
       font-size: 1rem;
       margin-top: 1rem;
       border-radius: 5px;
-      margin-right: 10px;
+      border: 2px solid #4CAF50; /* Green outline */
     }
 
     .nav {
       display: flex;
       gap: 20px;
       margin-top: 1rem;
+	  justify-content: center; /* Center the buttons */
     }
   </style>
 </head>
@@ -87,9 +88,6 @@
   </div>
   <p>Dietmar Offenhuber and Orkan Telhan</p>
   
-  <div class="nav">
-    <a href="index.html" class="button">Back to Main</a>
-  </div>
   <p></p>
 <iframe width="720" height="400" src="https://www.youtube.com/embed/9n6iJ2zZ9I4?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=9n6iJ2zZ9I4" 
   frameborder="0" 
@@ -119,8 +117,12 @@ Over time, the installation learns what a typical morning, afternoon, or evening
   
   <div class="para">
 There is a long history of water computers, from antiquity to Al-Jazari's Water Clocks in the 13th century, Vladimir Lukyanov's Water Integrator of the 1930s, or Bill Phillips' MONIAC of the 1950s, a machine that simulated the national economy. They all use water as an analogy for the quantities to be calculated: time, temperature, or money. Our physical neural network does not need analogies, but uses the expressions and memory of water as an elemental medium.
-
   </div>
+  
+<div class="nav">
+  <a href="index.html" class="button">Back to Main</a>
+  <a href="makingof.html" class="button" download>Making Of</a>
+</div>
   
 </body>
 </html>
