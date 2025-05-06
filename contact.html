@@ -88,10 +88,10 @@
 <form id="contact-form">
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" required>
-
+	<p></p>
   <label for="email">Email:</label>
   <input type="email" id="email" name="email" required>
-
+	<p></p>
   <label for="message">Message:</label>
   <textarea id="message" name="message" rows="5" required></textarea>
 
@@ -116,7 +116,7 @@
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formsubmit.co/YOUR@EMAIL.COM", {
+      const response = await fetch("https://formsubmit.co/dietoff@gmail.com", {
         method: "POST",
         body: formData,
         headers: {
