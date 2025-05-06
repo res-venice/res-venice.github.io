@@ -1,0 +1,142 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url('bg_gradient_sm.png') no-repeat center center / cover;
+      color: #ccc;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .image-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 5rem;
+    }
+
+    .image-row figure {
+      width: 250px;
+      margin: 0;
+      text-align: center;
+    }
+
+    img {
+      max-width: 900px;
+      width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+
+    .text {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .para {
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    .button {
+      background-color: transparent;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 2px solid #4CAF50; /* Green outline */
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 1rem;
+	  justify-content: center; /* Center the buttons */
+    }
+  </style>
+</head>
+<body>
+
+<h1>Contact Us</h1>
+
+<form id="contact-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+
+  <button type="submit">Send</button>
+</form>
+
+<div class="success" id="success-message" style="display:none;">
+  Thank you! Your message has been sent.
+</div>
+<div class="error" id="error-message" style="display:none;">
+  Oops! Something went wrong. Please try again.
+</div>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('success-message');
+  const errorMsg = document.getElementById('error-message');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formsubmit.co/YOUR@EMAIL.COM", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        form.reset();
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch (error) {
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
