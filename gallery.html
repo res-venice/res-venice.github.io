@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Reservoirs of Venice</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url('bg_gradient_sm.png') no-repeat center center / cover;
+      color: #ccc;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    
+    /* Add loading indicator for high-res images */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .text {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .para {
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    .button {
+      background-color: transparent;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 2px solid #4CAF50;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item::before {
+      content: "";
+      display: block;
+      padding-top: 75%; /* 4:3 aspect ratio */
+    }
+
+    .gallery-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .caption {
+      transform: translateY(0);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 100;
+      overflow: auto;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-caption {
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text">
+    Gallery - Reservoirs of Venice
+  </div>
+  <p>Dietmar Offenhuber and Orkan Telhan</p>
+
+  <div class="para">
+    Explore visual documentation of the Reservoirs of Venice project, including installation views, process documentation, and conceptual imagery that illustrates the intersection of water dynamics and computational processes.
+  </div>
+
+  <div class="nav">
+    <a href="index.html" class="button">Home</a>
+    <a href="how-it-works.html" class="button">How It Works</a>
+    <a href="contact.html" class="button">Contact Us</a>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item" onclick="openModal(0)">
+      <img src="photos/01-installation_vertical.jpg" alt="Installation view">
+      <div class="caption">View of the installation Reservoirs of Venice, International Exhibition, Biennale Architettura 2025, Arsenale di Venezia.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(1)">
+      <img src="photos/02-installation_horizontal.jpg" alt="Water sensor system">
+      <div class="caption">View of the installation "Reservoirs of Venice", International Exhibition, Biennale Architettura 2025, Arsenale di Venezia.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(2)">
+      <img src="photos/03-screen_column_detail.jpg" alt="Data visualization">
+      <div class="caption">Screen column, using webcam views of Venice's canals as input data for the installation.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(3)">
+      <img src="photos/04-reservoir_column_detail.jpg" alt="Venice canal">
+      <div class="caption">Reservoir column in idle mode.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(4)">
+      <img src="photos/05-reservoir_column_wave_analysis.jpg" alt="Research process">
+      <div class="caption">Detail of the laser display that visualizes water turnover in the reservoir column.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(5)">
+      <img src="photos/06-output_column.jpg" alt="Water patterns">
+      <div class="caption">Output column with clock and crystal indicators.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(6)">
+      <img src="photos/07-output_column_information_storage.jpg" alt="Exhibition visitor">
+      <div class="caption">Output column, detail of crystal indicators, visualizing the learning of the resulting neural network.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(7)">
+      <img src="photos/08-output_column_clock.jpg" alt="Technical setup">
+      <div class="caption">Output column, detail of the clock, showing the predicted time learned from the activity on the Venice canals.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(8)">
+      <img src="photos/09-slitscan_of_input_feed.png" alt="Wave patterns">
+      <div class="caption">Slitscan view of wave patterns on Venice Canals.</div>
+    </div>
+    <div class="gallery-item" onclick="openModal(9)">
+      <img src="photos/10-wave_energy_calculation.png" alt="Wave energy">
+      <div class="caption">The system calculating the energy of the wave patterns in the reservoir.</div>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="Gallery image">
+    </div>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+
+  <script>
+    const galleryItems = [
+      {
+        src: "photos/01-installation_vertical.jpg",
+        caption: "View of the installation Reservoirs of Venice, International Exhibition, Biennale Architettura 2025, Arsenale di Venezia. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/02-installation_horizontal.jpg",
+        caption: "View of the installation Reservoirs of Venice, International Exhibition, Biennale Architettura 2025, Arsenale di Venezia. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/03-screen_column_detail.jpg",
+        caption: "Screen column, using webcam views of Venice's canals as input data for the installation. Photo: Sebastian Gonzalez Quintero. May 5, 2025. Videos courtesy of the @iloveyouvenice YouTube channel."
+      },
+      {
+        src: "photos/04-reservoir_column_detail.jpg",
+        caption: "Reservoir column in idle mode. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/05-reservoir_column_wave_analysis.jpg",
+        caption: "Detail of the laser display that visualizes water turnover in the reservoir column. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/06-output_column.jpg",
+        caption: "Output column with clock and crystal indicators. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/07-output_column_information_storage.jpg",
+        caption: "Output column, detail of crystal indicators, visualizing the learning of the resulting neural network. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/08-output_column_clock.jpg",
+        caption: "Output column, detail of the clock, showing the predicted time learned from the activity on the Venice canals. Photo: Sebastian Gonzalez Quintero. May 5, 2025."
+      },
+      {
+        src: "photos/09-slitscan_of_input_feed.png",
+        caption: "Slitscan view of wave patterns on Venice Canals. Videos courtesy of the @iloveyouvenice YouTube channel. Image: Sebastian Gonzalez Quintero."
+      },
+      {
+        src: "photos/10-wave_energy_calculation.png",
+        caption: "The system calculating the energy of the wave patterns in the reservoir."
+      }
+    ];
+
+    function openModal(index) {
+      const modal = document.getElementById("myModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalCaption = document.getElementById("modalCaption");
+      
+      // Show loading indicator
+      const loadingDiv = document.createElement("div");
+      loadingDiv.className = "loading";
+      loadingDiv.innerHTML = "Loading high-resolution image...";
+      modal.appendChild(loadingDiv);
+      
+      modal.style.display = "flex";
+      
+      // Load high-res image
+      const img = new Image();
+      img.onload = function() {
+        // Remove loading indicator once image is loaded
+        if (modal.contains(loadingDiv)) {
+          modal.removeChild(loadingDiv);
+        }
+        modalImg.src = galleryItems[index].src;
+      };
+      img.onerror = function() {
+        // Remove loading indicator if image fails to load
+        if (modal.contains(loadingDiv)) {
+          modal.removeChild(loadingDiv);
+        }
+        modalImg.src = galleryItems[index].src;
+      };
+      img.src = galleryItems[index].src;
+      
+      // Set caption
+      modalCaption.innerHTML = galleryItems[index].caption;
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+      document.getElementById("modalImg").src = "";
+    }
+
+    // Close the modal if user clicks outside the image
+    window.onclick = function(event) {
+      const modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
